@@ -7,13 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>register page</h1>
-    <form method="POST" action="">
-        {{ form.hidden_tag() }}
-        {{ form.username }}
-        {{ form.password }}
-        {{ form.submit }}
-    </form>
-    <a href="{{ url_for('auth.login')}}">Login here</a>
+    <h1>Welcome you are logged In</h1>
+    <a href="{{ url_for('auth.logout')}}">Log out here</a>
 </body>
 </html>
