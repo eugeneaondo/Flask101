@@ -7,10 +7,17 @@ from wtforms.validators import InputRequired,Length,ValidationError
 from app.models.auth import User
 
 class RegisterForm(FlaskForm):
-    username = StringField(validators=[InputRequired(), Length(min=4,max=20)],
-                           render_kw={"placeholer":"Username"})
+
+    first_name = StringField(validators=[InputRequired(), Length(max=20)],
+                           label="First Name")
+    last_name = StringField(validators=[InputRequired(), Length(max=20)],
+                           label="Last Name")
+    email = StringField(validators=[InputRequired(), Length(min=4,max=20)],
+                           label="email")
+    phone_number = StringField(validators=[InputRequired(), Length(min=4,max=20)],
+                           label="Phone Number")
     password = PasswordField(validators=[InputRequired(), Length(min=8,max=20)],
-                           render_kw={"placeholer":"Password"})
+                           label="Password")
     submit = SubmitField("Register")
 
     def validate_username(self, username):
@@ -20,8 +27,8 @@ class RegisterForm(FlaskForm):
             raise ValidationError('The username already exists.Kindly choose a diffrent one')
 
 class LoginForm(FlaskForm):
-    username = StringField(validators=[InputRequired(), Length(min=4,max=20)],
-                           render_kw={"placeholer":"Username"})
+    email = StringField(validators=[InputRequired(), Length(min=4,max=20)],
+                           label="Email")
     password = PasswordField(validators=[InputRequired(), Length(min=8,max=20)],
-                           render_kw={"placeholer":"Password"})
+                           label="Password")
     submit = SubmitField("Login")

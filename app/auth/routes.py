@@ -14,7 +14,10 @@ def register():
 
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data)
-        new_user = User(username=form.username.data, password=hashed_password)
+        new_user = User(first_name=form.first_name.data,last_name=form.last_name.data,
+                        phone_number=form.phone_number.data,
+                        email=form.email.data,
+                        password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
         return redirect(url_for('auth.login'))
@@ -32,7 +35,7 @@ def load_user(user_id):
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        user = User.query.filter_by(username=form.username.data).first()
+        user = User.query.filter_by(email=form.email.data).first()
         if user:
             if bcrypt.check_password_hash(user.password, form.password.data):
                 login_user(user)
