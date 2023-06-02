@@ -9,6 +9,6 @@ def index():
 
 
 @main.route('/dashboard')
-@login_required
+# @login_required
 def dashboard():
     return render_template('main/dashboard.html')
